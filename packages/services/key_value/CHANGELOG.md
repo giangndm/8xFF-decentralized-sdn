@@ -5,13 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.1.0 (2023-11-17)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 20 commits contributed to the release over the course of 172 calendar days.
+ - 21 commits contributed to the release over the course of 172 calendar days.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 8 unique issues were worked on: [#11](https://github.com/giangndm/8xFF-decentralized-sdn/issues/11), [#3](https://github.com/giangndm/8xFF-decentralized-sdn/issues/3), [#4](https://github.com/giangndm/8xFF-decentralized-sdn/issues/4), [#41](https://github.com/giangndm/8xFF-decentralized-sdn/issues/41), [#43](https://github.com/giangndm/8xFF-decentralized-sdn/issues/43), [#51](https://github.com/giangndm/8xFF-decentralized-sdn/issues/51), [#54](https://github.com/giangndm/8xFF-decentralized-sdn/issues/54), [#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)
 
@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)**
     - Rename package to atm0s-sdn ([`d6e3db7`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/d6e3db7651f95244707b555aac24f89e5634d3ef))
  * **Uncategorized**
+    - Added change log ([`6884653`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/688465352f25b0c9f511e6622c3272cd3bd00c87))
     - Remove publish = false ([`64288da`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/64288da53606750e61ad0c09bccd10fb0c1c83b2))
     - Fixing kv_storage fire duplicate event and not update expire_at after received sync event ([`686aeea`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/686aeea00ea652a1acbdf1bfaf9e4cf8a4324a28))
     - Merge pull request #2 from bluesea-network/tun-tap-service ([`2c36be2`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/2c36be2bf3aaf3f369ec87adc137c90fc3193d3b))

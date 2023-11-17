@@ -1,12 +1,12 @@
 
 
-## Unreleased
+## 0.1.0 (2023-11-17)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 17 commits contributed to the release over the course of 176 calendar days.
+ - 18 commits contributed to the release over the course of 176 calendar days.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 9 unique issues were worked on: [#21](https://github.com/giangndm/8xFF-decentralized-sdn/issues/21), [#22](https://github.com/giangndm/8xFF-decentralized-sdn/issues/22), [#28](https://github.com/giangndm/8xFF-decentralized-sdn/issues/28), [#32](https://github.com/giangndm/8xFF-decentralized-sdn/issues/32), [#33](https://github.com/giangndm/8xFF-decentralized-sdn/issues/33), [#34](https://github.com/giangndm/8xFF-decentralized-sdn/issues/34), [#35](https://github.com/giangndm/8xFF-decentralized-sdn/issues/35), [#40](https://github.com/giangndm/8xFF-decentralized-sdn/issues/40), [#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)
 
@@ -35,6 +35,7 @@
  * **[#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)**
     - Rename package to atm0s-sdn ([`d6e3db7`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/d6e3db7651f95244707b555aac24f89e5634d3ef))
  * **Uncategorized**
+    - Added change log ([`6884653`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/688465352f25b0c9f511e6622c3272cd3bd00c87))
     - Update for release ([`37fe339`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/37fe339202c45328d81a30ac7c3b62dbee6b1370))
     - Remove publish = false ([`64288da`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/64288da53606750e61ad0c09bccd10fb0c1c83b2))
     - Merge pull request #1 from bluesea-network/refactor-network ([`f7c586e`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/f7c586ed9ccbc33673792b6db33c3a0f3bc68049))
