@@ -6,7 +6,7 @@
 
 <csr-read-only-do-not-edit/>
 
- - 18 commits contributed to the release over the course of 176 calendar days.
+ - 19 commits contributed to the release over the course of 176 calendar days.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 9 unique issues were worked on: [#21](https://github.com/giangndm/8xFF-decentralized-sdn/issues/21), [#22](https://github.com/giangndm/8xFF-decentralized-sdn/issues/22), [#28](https://github.com/giangndm/8xFF-decentralized-sdn/issues/28), [#32](https://github.com/giangndm/8xFF-decentralized-sdn/issues/32), [#33](https://github.com/giangndm/8xFF-decentralized-sdn/issues/33), [#34](https://github.com/giangndm/8xFF-decentralized-sdn/issues/34), [#35](https://github.com/giangndm/8xFF-decentralized-sdn/issues/35), [#40](https://github.com/giangndm/8xFF-decentralized-sdn/issues/40), [#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)
 
@@ -35,6 +35,7 @@
  * **[#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)**
     - Rename package to atm0s-sdn ([`d6e3db7`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/d6e3db7651f95244707b555aac24f89e5634d3ef))
  * **Uncategorized**
+    - Adjusting changelogs prior to release of atm0s-sdn-multiaddr v0.1.0, atm0s-sdn-identity v0.1.0, atm0s-sdn-router v0.1.0, atm0s-sdn-utils v0.1.0, atm0s-sdn-network v0.1.0, atm0s-sdn-key-value v0.1.0, atm0s-sdn-layers-spread-router v0.1.0, atm0s-sdn-layers-spread-router-sync v0.1.0, atm0s-sdn-manual-discovery v0.1.0, atm0s-sdn-pub-sub v0.1.0, atm0s-sdn-transport-tcp v0.1.0, atm0s-sdn-transport-udp v0.1.0, atm0s-sdn v0.1.0 ([`4523bc9`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/4523bc917b1e6341d1013e9c7fa842f0da3fdf34))
     - Added change log ([`6884653`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/688465352f25b0c9f511e6622c3272cd3bd00c87))
     - Update for release ([`37fe339`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/37fe339202c45328d81a30ac7c3b62dbee6b1370))
     - Remove publish = false ([`64288da`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/64288da53606750e61ad0c09bccd10fb0c1c83b2))

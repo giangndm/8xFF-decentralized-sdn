@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 9 commits contributed to the release over the course of 44 calendar days.
+ - 10 commits contributed to the release over the course of 44 calendar days.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 6 unique issues were worked on: [#11](https://github.com/giangndm/8xFF-decentralized-sdn/issues/11), [#15](https://github.com/giangndm/8xFF-decentralized-sdn/issues/15), [#27](https://github.com/giangndm/8xFF-decentralized-sdn/issues/27), [#3](https://github.com/giangndm/8xFF-decentralized-sdn/issues/3), [#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61), [#7](https://github.com/giangndm/8xFF-decentralized-sdn/issues/7)
 
@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#7](https://github.com/giangndm/8xFF-decentralized-sdn/issues/7)**
     - Using socket2 for config udp ([`13861d2`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/13861d280624996934ebea34423438685b802b42))
  * **Uncategorized**
+    - Adjusting changelogs prior to release of atm0s-sdn-multiaddr v0.1.0, atm0s-sdn-identity v0.1.0, atm0s-sdn-router v0.1.0, atm0s-sdn-utils v0.1.0, atm0s-sdn-network v0.1.0, atm0s-sdn-key-value v0.1.0, atm0s-sdn-layers-spread-router v0.1.0, atm0s-sdn-layers-spread-router-sync v0.1.0, atm0s-sdn-manual-discovery v0.1.0, atm0s-sdn-pub-sub v0.1.0, atm0s-sdn-transport-tcp v0.1.0, atm0s-sdn-transport-udp v0.1.0, atm0s-sdn v0.1.0 ([`4523bc9`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/4523bc917b1e6341d1013e9c7fa842f0da3fdf34))
     - Added change log ([`6884653`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/688465352f25b0c9f511e6622c3272cd3bd00c87))
     - Remove publish = false ([`64288da`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/64288da53606750e61ad0c09bccd10fb0c1c83b2))
     - Fixing interface for media-server ([`b600811`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/b600811e3f96e2249e68f413aada178c5f25508e))

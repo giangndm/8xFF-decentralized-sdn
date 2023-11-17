@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 18 commits contributed to the release over the course of 190 calendar days.
+ - 19 commits contributed to the release over the course of 190 calendar days.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 5 unique issues were worked on: [#11](https://github.com/giangndm/8xFF-decentralized-sdn/issues/11), [#4](https://github.com/giangndm/8xFF-decentralized-sdn/issues/4), [#41](https://github.com/giangndm/8xFF-decentralized-sdn/issues/41), [#43](https://github.com/giangndm/8xFF-decentralized-sdn/issues/43), [#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)
 
@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#61](https://github.com/giangndm/8xFF-decentralized-sdn/issues/61)**
     - Rename package to atm0s-sdn ([`d6e3db7`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/d6e3db7651f95244707b555aac24f89e5634d3ef))
  * **Uncategorized**
+    - Adjusting changelogs prior to release of atm0s-sdn-multiaddr v0.1.0, atm0s-sdn-identity v0.1.0, atm0s-sdn-router v0.1.0, atm0s-sdn-utils v0.1.0, atm0s-sdn-network v0.1.0, atm0s-sdn-key-value v0.1.0, atm0s-sdn-layers-spread-router v0.1.0, atm0s-sdn-layers-spread-router-sync v0.1.0, atm0s-sdn-manual-discovery v0.1.0, atm0s-sdn-pub-sub v0.1.0, atm0s-sdn-transport-tcp v0.1.0, atm0s-sdn-transport-udp v0.1.0, atm0s-sdn v0.1.0 ([`4523bc9`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/4523bc917b1e6341d1013e9c7fa842f0da3fdf34))
     - Added change log ([`6884653`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/688465352f25b0c9f511e6622c3272cd3bd00c87))
     - Remove publish = false ([`64288da`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/64288da53606750e61ad0c09bccd10fb0c1c83b2))
     - Merge pull request #1 from bluesea-network/refactor-network ([`f7c586e`](https://github.com/giangndm/8xFF-decentralized-sdn/commit/f7c586ed9ccbc33673792b6db33c3a0f3bc68049))
