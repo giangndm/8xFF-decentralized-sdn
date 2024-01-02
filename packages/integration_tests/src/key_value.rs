@@ -34,7 +34,7 @@ mod tests {
     async fn run_node(vnet: Arc<VnetEarth>, node_id: NodeId, seeds: Vec<NodeAddr>) -> (KeyValueSdk, NodeAddr, JoinHandle<()>) {
         log::info!("Run node {} connect to {:?}", node_id, seeds);
         let node_addr = Arc::new(NodeAddrBuilder::new(node_id));
-        let transport = Box::new(atm0s_sdn_transport_vnet::VnetTransport::new(vnet, node_addr.addr()));
+        let transport = atm0s_sdn_transport_vnet::VnetTransport::new(vnet, node_addr.addr());
         let timer = Arc::new(SystemTimer());
 
         let router = SharedRouter::new(node_id);
@@ -50,7 +50,7 @@ mod tests {
         let kv_sdk = KeyValueSdk::new();
         let kv_behaviour = KeyValueBehavior::new(node_id, 3000, Some(Box::new(kv_sdk.clone())));
 
-        let mut plane = NetworkPlane::<ImplBehaviorEvent, ImplHandlerEvent, ImplSdkEvent>::new(NetworkPlaneConfig {
+        let mut plane = NetworkPlane::<ImplBehaviorEvent, ImplHandlerEvent, ImplSdkEvent, _>::new(NetworkPlaneConfig {
             node_id,
             tick_ms: 100,
             behaviors: vec![Box::new(kv_behaviour), Box::new(router_sync_behaviour), Box::new(manual)],

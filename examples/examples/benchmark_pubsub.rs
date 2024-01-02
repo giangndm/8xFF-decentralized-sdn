@@ -37,7 +37,7 @@ async fn run_node(node_id: NodeId, seeds: Vec<NodeAddr>) -> (PubsubSdk, NodeAddr
     let mut node_addr_builder = NodeAddrBuilder::new(node_id);
     let secure = Arc::new(atm0s_sdn::StaticKeySecure::new("secure-token"));
     let socket = UdpTransport::prepare(0, &mut node_addr_builder).await;
-    let transport = Box::new(UdpTransport::new(node_addr_builder.addr(), socket, secure));
+    let transport = UdpTransport::new(node_addr_builder.addr(), socket, secure);
     let timer = Arc::new(SystemTimer());
 
     let router = SharedRouter::new(node_id);
@@ -53,7 +53,7 @@ async fn run_node(node_id: NodeId, seeds: Vec<NodeAddr>) -> (PubsubSdk, NodeAddr
     let kv_behaviour = KeyValueBehavior::new(node_id, 3000, None);
     let (pubsub_behavior, pubsub_sdk) = PubsubServiceBehaviour::new(node_id, timer.clone());
 
-    let mut plane = NetworkPlane::<ImplBehaviorEvent, ImplHandlerEvent, ImplSdkEvent>::new(NetworkPlaneConfig {
+    let mut plane = NetworkPlane::<ImplBehaviorEvent, ImplHandlerEvent, ImplSdkEvent, _>::new(NetworkPlaneConfig {
         node_id,
         tick_ms: 1000,
         behaviors: vec![Box::new(pubsub_behavior), Box::new(kv_behaviour), Box::new(router_sync_behaviour), Box::new(manual)],

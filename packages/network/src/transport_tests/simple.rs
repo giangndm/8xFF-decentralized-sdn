@@ -121,7 +121,7 @@ pub async fn simple_network_connect_wrong_node<T: Transport + Send + 'static>(mu
         connector1.continue_pending_outgoing(conn);
     }
 
-    let join = async_std::task::spawn(async move {
+    let join = async_std::task::spawn_local(async move {
         loop {
             match tran2.recv().timeout(Duration::from_secs(2)).await.unwrap() {
                 Ok(msg) => match msg {

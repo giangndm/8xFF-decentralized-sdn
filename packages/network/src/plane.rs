@@ -83,7 +83,7 @@ pub enum NetworkPlaneError {
     RuntimeError,
 }
 
-pub struct NetworkPlaneConfig<BE, HE, SE> {
+pub struct NetworkPlaneConfig<BE, HE, SE, Tran> {
     /// Node_id, which is u32 value
     pub node_id: NodeId,
     /// Tick_ms, each tick_ms miliseconds, network will call tick function on both behavior and handler
@@ -91,17 +91,17 @@ pub struct NetworkPlaneConfig<BE, HE, SE> {
     /// List of behavior
     pub behaviors: Vec<Box<dyn NetworkBehavior<BE, HE, SE> + Send + Sync>>,
     /// Transport which is used
-    pub transport: Box<dyn Transport + Send + Sync>,
+    pub transport: Tran,
     /// Timer for getting timestamp miliseconds
     pub timer: Arc<dyn Timer>,
     /// Routing table, which is used to route message to correct node
     pub router: Arc<dyn RouterTable>,
 }
 
-pub struct NetworkPlane<BE, HE, SE> {
+pub struct NetworkPlane<BE, HE, SE, Tran> {
     node_id: NodeId,
     tick_ms: u64,
-    transport: Box<dyn Transport + Send + Sync>,
+    transport: Tran,
     timer: Arc<dyn Timer>,
     router: Arc<dyn RouterTable>,
     internal_tx: Sender<NetworkPlaneInternalEvent<BE>>,
@@ -111,15 +111,16 @@ pub struct NetworkPlane<BE, HE, SE> {
     internal: PlaneInternal<BE, HE, SE>,
 }
 
-impl<BE, HE, SE> NetworkPlane<BE, HE, SE>
+impl<BE, HE, SE, Tran> NetworkPlane<BE, HE, SE, Tran>
 where
     BE: Send + Sync + 'static,
     HE: Send + Sync + 'static,
     SE: Send + Sync + 'static,
+    Tran: Transport + 'static,
 {
     /// Creating new network plane, after create need to run
     /// `while let Some(_) = plane.run().await {}`
-    pub fn new(conf: NetworkPlaneConfig<BE, HE, SE>) -> Self {
+    pub fn new(conf: NetworkPlaneConfig<BE, HE, SE, Tran>) -> Self {
         let (internal_tx, internal_rx) = unbounded();
         let bus: Arc<PlaneBusImpl<BE, HE>> = Arc::new(PlaneBusImpl::new(conf.node_id, conf.router.clone(), internal_tx.clone()));
 

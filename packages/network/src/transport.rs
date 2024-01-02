@@ -22,7 +22,6 @@ pub enum TransportEvent {
     OutgoingError { node_id: NodeId, conn_id: ConnId, err: OutgoingConnectionError },
 }
 
-#[async_trait::async_trait]
 pub trait Transport: Send {
     fn connector(&mut self) -> &mut dyn TransportConnector;
     async fn recv(&mut self) -> Result<TransportEvent, ()>;

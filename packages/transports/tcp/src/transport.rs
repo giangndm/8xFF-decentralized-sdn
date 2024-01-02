@@ -79,7 +79,6 @@ impl TcpTransport {
     }
 }
 
-#[async_trait::async_trait]
 impl Transport for TcpTransport {
     fn connector(&mut self) -> &mut dyn TransportConnector {
         &mut self.connector

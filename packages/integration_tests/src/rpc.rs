@@ -32,7 +32,7 @@ mod test {
     async fn run_node(vnet: Arc<VnetEarth>, rpc_service_id: u8, node_id: NodeId, seeds: Vec<NodeAddr>) -> (RpcBox, NodeAddr, JoinHandle<()>) {
         log::info!("Run node {} connect to {:?}", node_id, seeds);
         let node_addr = Arc::new(NodeAddrBuilder::new(node_id));
-        let transport = Box::new(atm0s_sdn_transport_vnet::VnetTransport::new(vnet, node_addr.addr()));
+        let transport = atm0s_sdn_transport_vnet::VnetTransport::new(vnet, node_addr.addr());
         let timer = Arc::new(SystemTimer());
 
         let router = SharedRouter::new(node_id);
@@ -48,7 +48,7 @@ mod test {
         let kv_behaviour = KeyValueBehavior::new(node_id, 3000, None);
         let router_sync_behaviour = LayersSpreadRouterSyncBehavior::new(router.clone());
 
-        let mut plane = NetworkPlane::<BE, HE, SE>::new(NetworkPlaneConfig {
+        let mut plane = NetworkPlane::<BE, HE, SE, _>::new(NetworkPlaneConfig {
             node_id,
             tick_ms: 100,
             behaviors: vec![Box::new(kv_behaviour), Box::new(router_sync_behaviour), Box::new(manual), Box::new(rpc_behaviour)],

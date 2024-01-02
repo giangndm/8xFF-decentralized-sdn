@@ -145,7 +145,6 @@ impl UdpTransport {
     }
 }
 
-#[async_trait::async_trait]
 impl Transport for UdpTransport {
     fn connector(&mut self) -> &mut dyn TransportConnector {
         &mut self.connector

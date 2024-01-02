@@ -168,7 +168,7 @@ async fn main() {
         // The tick_ms is the interval of the on_tick event, which is triggered periodically.
         tick_ms: 1000,
         behaviors: vec![Box::new(manual), Box::new(spreads_layer_router), Box::new(key_value), Box::new(pubsub_behavior)],
-        transport: Box::new(transport),
+        transport,
         timer,
     };
 
@@ -177,7 +177,7 @@ async fn main() {
     // The behavior event is triggered by the behavior, which is used to interact with the handler.
     // The handler event is triggered by the handler, which is used to interact with the behavior.
     // The SDK event is triggered by the SDK, which is used to interact with other services.
-    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent>::new(plan_cfg);
+    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent, _>::new(plan_cfg);
 
     // Start the network plane.
     let _ = async_std::task::spawn(async move {

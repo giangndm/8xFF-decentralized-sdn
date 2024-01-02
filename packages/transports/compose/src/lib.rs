@@ -20,7 +20,6 @@ macro_rules! compose_transport {
                 }
             }
 
-            #[async_trait::async_trait]
             impl atm0s_sdn::Transport for $name {
                 fn connector(&mut self) ->  &mut dyn atm0s_sdn::TransportConnector  {
                     &mut self.connector

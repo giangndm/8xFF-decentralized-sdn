@@ -52,7 +52,7 @@ async fn main() {
     let mut node_addr_builder = NodeAddrBuilder::new(args.node_id);
     let socket = UdpTransport::prepare(0, &mut node_addr_builder).await;
     let secure = Arc::new(atm0s_sdn::StaticKeySecure::new("secure-token"));
-    let transport = Box::new(UdpTransport::new(node_addr_builder.addr(), socket, secure));
+    let transport = UdpTransport::new(node_addr_builder.addr(), socket, secure);
     let node_addr = node_addr_builder.addr();
     log::info!("Listen on addr {}", node_addr);
 
@@ -68,7 +68,7 @@ async fn main() {
         connect_tags: vec![],
     });
 
-    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent>::new(NetworkPlaneConfig {
+    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent, _>::new(NetworkPlaneConfig {
         node_id: args.node_id,
         tick_ms: 1000,
         behaviors: vec![Box::new(spreads_layer_router), Box::new(key_value), Box::new(manual)],

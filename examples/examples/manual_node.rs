@@ -110,7 +110,7 @@ async fn main() {
         node_id: args.node_id,
         tick_ms: 1000,
         behaviors: vec![Box::new(manual), Box::new(spreads_layer_router), Box::new(key_value)],
-        transport: Box::new(transport),
+        transport,
         timer,
     };
 
@@ -119,7 +119,7 @@ async fn main() {
         plan_cfg.behaviors.push(Box::new(tun_tap));
     }
 
-    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent>::new(plan_cfg);
+    let mut plane = NetworkPlane::<NodeBehaviorEvent, NodeHandleEvent, NodeSdkEvent, _>::new(plan_cfg);
 
     plane.started();
 

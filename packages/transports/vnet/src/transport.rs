@@ -25,7 +25,6 @@ impl VnetTransport {
     }
 }
 
-#[async_trait::async_trait]
 impl Transport for VnetTransport {
     fn connector(&mut self) -> &mut dyn TransportConnector {
         &mut self.connector
