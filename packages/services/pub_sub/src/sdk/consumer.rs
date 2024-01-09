@@ -35,13 +35,7 @@ impl Consumer {
         timer: Arc<dyn Timer>,
     ) -> Self {
         let (tx, rx) = async_std::channel::bounded(max_queue_size);
-        local.write().on_local_sub(uuid, tx);
-        if let Some(sources) = source_binding.write().on_local_sub(channel, uuid) {
-            for source in sources {
-                let channel = ChannelIdentify::new(channel, source);
-                logic.write().on_local_sub(channel, uuid);
-            }
-        }
+        local.write().on_sdk_sub(channel, uuid, tx);
 
         Self {
             uuid,
@@ -80,13 +74,7 @@ impl Consumer {
 
 impl Drop for Consumer {
     fn drop(&mut self) {
-        self.local.write().on_local_unsub(self.uuid);
-        if let Some(sources) = self.source_binding.write().on_local_unsub(self.channel, self.uuid) {
-            for source in sources {
-                let channel = ChannelIdentify::new(self.channel, source);
-                self.logic.write().on_local_unsub(channel, self.uuid);
-            }
-        }
+        self.local.write().on_sdk_unsub(self.channel, self.uuid);
     }
 }
 

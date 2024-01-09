@@ -1,4 +1,5 @@
-use crate::relay::ChannelIdentify;
+use crate::{relay::ChannelIdentify, ChannelUuid, Feedback};
+use bytes::Bytes;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq)]
@@ -16,4 +17,13 @@ pub enum PubsubRemoteEvent {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum PubsubSdkEvent {}
+pub enum PubsubSdkEvent {
+    Sub(ChannelUuid),
+    Feedback(ChannelUuid, Feedback),
+    Unsub(ChannelUuid),
+    SubOnData(ChannelIdentify, Bytes),
+    Pub(ChannelUuid),
+    Unpub(ChannelUuid),
+    PubOnFeedback(ChannelUuid, Feedback),
+    PubSendData(ChannelUuid, Bytes),
+}

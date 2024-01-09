@@ -12,7 +12,7 @@ use atm0s_sdn_utils::Timer;
 
 use crate::{
     handler::{PubsubServiceConnectionHandler, CONTROL_META_TYPE, FEEDBACK_TYPE},
-    msg::{PubsubServiceBehaviourEvent, PubsubServiceHandlerEvent},
+    msg::{PubsubServiceBehaviourEvent, PubsubServiceHandlerEvent, PubsubSdkEvent},
     relay::{local::LocalRelayAction, logic::PubsubRelayLogicOutput, source_binding::SourceBindingAction, PubsubRelay},
     PubsubSdk, PUBSUB_SERVICE_ID,
 };
@@ -29,7 +29,7 @@ pub struct PubsubServiceBehaviour<BE, HE, SE> {
 
 impl<BE, HE, SE> PubsubServiceBehaviour<BE, HE, SE>
 where
-    SE: From<KeyValueSdkEvent> + TryInto<KeyValueSdkEvent>,
+    SE: From<KeyValueSdkEvent> + From<PubsubSdkEvent> + TryInto<KeyValueSdkEvent> + TryInto<PubsubSdkEvent>,
 {
     pub fn new(node_id: NodeId, timer: Arc<dyn Timer>) -> (Self, PubsubSdk) {
         let (relay, sdk) = PubsubRelay::new(node_id, timer);
@@ -81,6 +81,15 @@ where
                         KeyValueSdkEvent::DelH(channel as u64, self.node_id as u64).into(),
                     ));
                 }
+                LocalRelayAction::Subscribe(channel) => {
+
+                }
+                LocalRelayAction::Unsubscribe(channel) => {
+
+                }
+                LocalRelayAction::ToService(service, event) => {
+                    self.outputs.push_back(NetworkBehaviorAction::ToSdkService(service, event.into()));
+                }
             }
         }
 
@@ -109,7 +118,7 @@ impl<BE, HE, SE> NetworkBehavior<BE, HE, SE> for PubsubServiceBehaviour<BE, HE, 
 where
     BE: From<PubsubServiceBehaviourEvent> + TryInto<PubsubServiceBehaviourEvent> + Send + Sync + 'static,
     HE: From<PubsubServiceHandlerEvent> + TryInto<PubsubServiceHandlerEvent> + Send + Sync + 'static,
-    SE: From<KeyValueSdkEvent> + TryInto<KeyValueSdkEvent>,
+    SE: From<KeyValueSdkEvent> + From<PubsubSdkEvent> + TryInto<KeyValueSdkEvent> + TryInto<PubsubSdkEvent>,
 {
     fn service_id(&self) -> u8 {
         PUBSUB_SERVICE_ID
@@ -175,21 +184,46 @@ where
     }
 
     fn on_sdk_msg(&mut self, ctx: &BehaviorContext, _now_ms: u64, from_service: u8, event: SE) {
-        if from_service != KEY_VALUE_SERVICE_ID {
-            return;
-        }
-
-        if let Ok(event) = event.try_into() {
-            match event {
-                KeyValueSdkEvent::OnKeyHChanged(_uuid, key, _sub_key, value, _version, source) => {
-                    if value.is_some() {
-                        self.relay.on_source_added(key as u32, source);
-                    } else {
-                        self.relay.on_source_removed(key as u32, source);
+        if from_service == KEY_VALUE_SERVICE_ID {
+            if let Ok(event) = event.try_into() {
+                match event {
+                    KeyValueSdkEvent::OnKeyHChanged(_uuid, key, _sub_key, value, _version, source) => {
+                        if value.is_some() {
+                            self.relay.on_source_added(key as u32, source);
+                        } else {
+                            self.relay.on_source_removed(key as u32, source);
+                        }
+                        self.pop_all_events(ctx);
                     }
-                    self.pop_all_events(ctx);
+                    _ => {}
                 }
-                _ => {}
+            }
+        } else if let Ok(event) = event.try_into() {
+            match event {
+                PubsubSdkEvent::Sub(channel_id) => {
+
+                },
+                PubsubSdkEvent::Feedback(channel_id, fb) => {
+                    
+                }
+                PubsubSdkEvent::Unsub(channel_id) => {
+
+                },
+                PubsubSdkEvent::SubOnData(channel_id, msg) => {
+                    panic!("should not send");
+                },
+                PubsubSdkEvent::Pub(channel_id) => {
+
+                },
+                PubsubSdkEvent::Unpub(channel_id) => {
+
+                },
+                PubsubSdkEvent::PubOnFeedback(_, _) => {
+                    panic!("should not send");
+                }
+                PubsubSdkEvent::PubSendData(channel_id, data) => {
+
+                },
             }
         }
     }
@@ -206,6 +240,7 @@ mod test {
     use atm0s_sdn_identity::ConnId;
     use atm0s_sdn_key_value::{KeyValueSdkEvent, KEY_VALUE_SERVICE_ID};
     use atm0s_sdn_network::{
+        convert_enum,
         behaviour::{BehaviorContext, NetworkBehavior, NetworkBehaviorAction},
         msg::{MsgHeader, TransportMsg},
     };
@@ -215,12 +250,16 @@ mod test {
     use crate::{
         behaviour::{KEY_VALUE_SUB_UUID, KEY_VALUE_TIMEOUT_MS},
         handler::CONTROL_META_TYPE,
-        ChannelIdentify, PubsubRemoteEvent, PubsubServiceBehaviourEvent, PubsubServiceHandlerEvent, PUBSUB_SERVICE_ID,
+        ChannelIdentify, PubsubRemoteEvent, PubsubServiceBehaviourEvent, PubsubServiceHandlerEvent, PUBSUB_SERVICE_ID, msg::PubsubSdkEvent,
     };
 
     type BE = PubsubServiceBehaviourEvent;
     type HE = PubsubServiceHandlerEvent;
-    type SE = KeyValueSdkEvent;
+    #[derive(convert_enum::TryInto, convert_enum::From, PartialEq, Debug)]
+    enum SE {
+        KeyValue(KeyValueSdkEvent),
+        Pubsub(PubsubSdkEvent),
+    }
 
     #[test]
     fn publish_unpublish_should_set_del_key() {
